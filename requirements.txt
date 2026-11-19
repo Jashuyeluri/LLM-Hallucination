@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-multipart
+ollama
+groq
+pdfplumber
+python-docx
+
+# Optional shared rate limiting when RATE_LIMIT_REDIS_URL is configured
+redis>=5.0.0
+python-dotenv>=1.0.0

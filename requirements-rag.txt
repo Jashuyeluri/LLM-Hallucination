@@ -1,0 +1,3 @@
+# Optional semantic retrieval stack. BM25 retrieval works without these packages.
+sentence-transformers>=3.0.0
+faiss-cpu>=1.8.0
