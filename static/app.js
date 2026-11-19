@@ -584,7 +584,9 @@ const renderResults = (data) => {
   // Explicitly reveal the response panel whenever a response is available.
   correctionPanel.hidden = !finalResponse;
 
-  allClearText.textContent = clearMessage(score);
+  allClearText.textContent = corrected
+  ? "Correction produced and re-verified successfully."
+  : clearMessage(score);
   allClear.hidden = false;
 
   results.hidden = false;
