@@ -79,14 +79,21 @@ def _chat_ollama(prompt, model):
 
 
 def _chat_groq(prompt, model):
-    from groq import Groq
+    import time
+    from groq import Groq, RateLimitError
     if not GROQ_API_KEY:
         raise ValueError("GROQ_API_KEY not set. Get a free key at https://console.groq.com/keys")
     client = Groq(api_key=GROQ_API_KEY)
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=4096,
-        temperature=0,
-    )
-    return (response.choices[0].message.content or "").strip()
+    for attempt in range(5):
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=2048,
+                temperature=0,
+            )
+            return (response.choices[0].message.content or "").strip()
+        except RateLimitError:
+            if attempt == 4:
+                raise
+            time.sleep(3 * (attempt + 1))
