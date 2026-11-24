@@ -2,7 +2,7 @@
 
 Checks every claim in an AI-written response against a source document, scores faithfulness, and rewrites the response with verified facts. FastAPI backend, hand-built HTML/CSS/JS dashboard.
 
-## How it works
+## How it works 
 
 ```
 response ──► claim extraction ──► verification ──► score ──► correction ──► re-verification
